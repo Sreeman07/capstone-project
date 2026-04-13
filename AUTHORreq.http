@@ -1,0 +1,34 @@
+###create article
+POST http://localhost:5000/author-api/article
+Content-Type: application/json
+
+{
+ "author":"69b40f6b1daf2eacfdf85c66",
+ "title":"Article 1",
+ "category":"programming",
+ "content":"Tech fest article"
+}
+
+###
+GET http://localhost:5000/author-api/article
+
+
+###update article by author
+
+PUT http://localhost:5000/author-api/article
+Content-Type: application/json
+
+{
+    "articleId":"69b4562780be712c5272c24e",
+    "title":"Article-1 by Author 1",
+    "category":"AI",
+    "content":"this is a Ai fest"
+}
+###delete/restore an article by article id(soft delete)
+PATCH http://localhost:5000/author-api/article
+Content-Type: application/json
+
+{
+    "articleId":"69b4562780be712c5272c24e",
+    "isArticleActive":false
+}

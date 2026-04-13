@@ -1,0 +1,47 @@
+###register user
+POST http://localhost:5000/auth-api/users
+Content-Type: application/json
+
+{
+    "firstName":"kalpana",
+    "lastName":"raj",
+    "email":"raj@gmail.com",
+    "password":"123456",
+    "role":"USER",
+    "profileImageUrl":"image"
+    }
+
+
+###authentication
+POST http://localhost:5000/auth-api/login
+Content-Type: application/json
+
+{
+    
+    "email":"gcsr@gmail.com",
+    "password":"abcd"
+    }
+###
+GET http://localhost:5000/auth-api/logout
+
+### read articles of all authors
+GET http://localhost:5000/user-api/article
+
+###add comment by user to an article
+PUT http://localhost:5000/user-api/article
+Content-Type: application/json
+
+{
+    "articleId":"",
+    "comment":"this is amazing"
+}
+
+###change password
+PUT http://localhost:5000/auth/password
+Content-Type: application/json
+
+{
+    "currentPassword":"abcd",
+    "newPassword":"dcba"
+}
+

@@ -1,0 +1,38 @@
+### Admin Login
+POST http://localhost:5000/auth-api/login
+Content-Type: application/json
+
+{
+  "email": "admin@gmail.com",
+  "password": "abcdef"
+}
+
+###
+
+### Get all users
+GET http://localhost:5000/admin-api/users
+
+###
+
+###  Get all authors
+GET http://localhost:5000/admin-api/authors
+
+###
+
+### Block user
+PUT http://localhost:5000/admin-api/user/block/69dcd419008c306291a55c5a
+
+###
+
+### Activate user
+PUT http://localhost:5000/admin-api/user/activate/69dcd419008c306291a55c5a
+
+###
+
+### Block author
+PUT http://localhost:5000/admin-api/author/block/AUTHOR_ID
+
+###
+
+### Activate author
+PUT http://localhost:5000/admin-api/author/activate/AUTHOR_ID
