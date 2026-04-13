@@ -12,53 +12,44 @@ config()
 
 const app = exp()
 
-//CORS
-
+// CORS
 app.use(cors({
   origin: [
     "http://localhost:5173",
-    "https://your-frontend.vercel.app"
+    "https://your-real-frontend.vercel.app"
   ],
   credentials: true
 }));
 
-//REMOVE THIS LINE
-// app.options('*', cors());
-
 app.use(cookieParser())
 app.use(exp.json())
 
+// ROUTES
 app.use("/user-api", userApp)
 app.use("/author-api", authorApp)
 app.use("/admin-api", adminApp)
 app.use("/auth-api", commonApp)
 
+// PORT
 const port = process.env.PORT || 5000
 
-const connectDB = async () => {
-  try {
-    await connect(process.env.DB_URL);
-    console.log("DB connected");
+// DB + SERVER START
+connect(process.env.DB_URL)
+  .then(() => {
+    console.log("DB connected")
 
-    app.listen(port, () => console.log(`server listening on ${port}..`));
-  } catch (err) {
-    console.log("err in db connect", err)
-  }
-}
-connectDB()
+    app.listen(port, () => {
+      console.log(`server listening on ${port}..`)
+    })
+  })
+  .catch(err => console.log("err in db connect", err))
 
-// 404 handler
+// 404
 app.use((req, res) => {
   res.status(404).json({ message: `path ${req.url} is invalid` })
 })
 
 // error handler
 app.use((err, req, res, next) => {
-  if (err.name === 'ValidationError') {
-    return res.status(400).json({ message: "error occured", error: err.message })
-  }
-  if (err.name === 'CastError') {
-    return res.status(400).json({ message: "error occured", error: err.message })
-  }
   res.status(500).json({ message: "error occured", error: err.message })
 })
