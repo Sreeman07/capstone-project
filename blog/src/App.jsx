@@ -1,6 +1,10 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom"; // ✅ FIXED
+import React from "react";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
+// layouts
 import RootLayout from "./components/RootLayout";
+
+// pages
 import Home from "./components/Home";
 import Register from "./components/Register";
 import Login from "./components/Login";
@@ -10,9 +14,12 @@ import AuthorArticles from "./components/AuthorArticles";
 import EditArticle from "./components/EditArticle";
 import WriteArticles from "./components/WriteArticles";
 import ArticleByID from "./components/ArticleByID";
-import { Toaster } from "react-hot-toast";
 import Unauthorized from "./components/Unauthorized";
+
+// components
 import ProtectedRoute from "./components/ProtectedRoute";
+
+import { Toaster } from "react-hot-toast";
 
 function App() {
   const routerObj = createBrowserRouter([
@@ -26,7 +33,6 @@ function App() {
 
         { path: "login", element: <Login /> },
 
-        //  USER ROUTE
         {
           path: "user-profile",
           element: (
@@ -36,7 +42,6 @@ function App() {
           ),
         },
 
-        //  AUTHOR ROUTES
         {
           path: "author-profile",
           element: (
@@ -51,7 +56,6 @@ function App() {
           ],
         },
 
-        //  PROTECTED ARTICLE VIEW (USER + AUTHOR)
         {
           path: "article/:id",
           element: (
@@ -61,7 +65,6 @@ function App() {
           ),
         },
 
-        //  PROTECTED EDIT
         {
           path: "edit-article",
           element: (

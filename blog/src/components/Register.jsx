@@ -44,7 +44,7 @@ function Register() {
       };
 
       const res = await axios.post(
-        "http://localhost:5000/auth-api/users", // ✅ FIXED
+        "http://capstone-project.onrender.com/auth-api/users", 
         newUser,
         { withCredentials: true }
       );

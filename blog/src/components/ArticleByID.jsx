@@ -41,7 +41,7 @@ function ArticleByID() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  // ❌ REMOVED WRONG API CALL (no /article/:id in backend)
+  //  REMOVED WRONG API CALL (no /article/:id in backend)
   useEffect(() => {
     if (!article) {
       setError("Article data not available");
@@ -56,7 +56,7 @@ function ArticleByID() {
     });
   };
 
-  // ✅ delete / restore article
+  //  delete / restore article
   const toggleArticleStatus = async () => {
     const newStatus = !article.isArticleActive;
 
@@ -67,7 +67,7 @@ function ArticleByID() {
 
     try {
       const res = await axios.patch(
-        "http://localhost:5000/author-api/article", // ✅ FIXED
+        "http://capstone-project.onrender.com/author-api/article", // ✅ FIXED
         { articleId: article._id, isArticleActive: newStatus },
         { withCredentials: true }
       );
@@ -91,7 +91,7 @@ function ArticleByID() {
       commentObj.articleId = article._id;
 
       const res = await axios.put(
-        "http://localhost:5000/user-api/articles/comment", // ✅ FIXED
+        "http://capstone-project.onrender.com/user-api/articles/comment", // ✅ FIXED
         commentObj,
         { withCredentials: true }
       );
