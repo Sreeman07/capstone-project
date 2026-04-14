@@ -26,7 +26,7 @@ function Home() {
     <div className="bg-gray-50 min-h-screen">
       
       {/* Hero Section */}
-      <section className="bg-linear-to-r from-blue-500 to-purple-600 text-white py-20 text-center">
+      <section className="bg-gradient-to-r from-blue-500 to-purple-600 text-white py-20 text-center">
         <h1 className="text-5xl font-bold mb-4">Welcome to BlogApp ✍️</h1>
         <p className="text-lg mb-6">
           Share your ideas, explore articles, and grow your knowledge.
