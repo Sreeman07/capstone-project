@@ -13,28 +13,11 @@ config();
 
 const app = exp();
 
-// ✅ FIXED CORS (handles Vercel + preflight)
-const corsOptions = {
-  origin: (origin, callback) => {
-    if (
-      !origin || // allow Postman / server-to-server
-      origin.includes("localhost") ||
-      origin.includes("vercel.app")
-    ) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
-  credentials: true,
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"],
-};
-
-app.use(cors(corsOptions));
-
-// ✅ IMPORTANT: handle preflight requests
-app.options("*", cors(corsOptions));
+// ✅ SIMPLE & WORKING CORS
+app.use(cors({
+  origin: true,          // allows all origins dynamically (Vercel safe)
+  credentials: true      // required for cookies/auth
+}));
 
 app.use(cookieParser());
 app.use(exp.json());
@@ -54,20 +37,22 @@ connect(process.env.DB_URL)
     console.log("✅ DB connected");
 
     app.listen(port, () => {
-      console.log(`🚀 server listening on ${port}..`);
+      console.log(`🚀 server listening on ${port}`);
     });
   })
-  .catch((err) => console.log("❌ err in db connect", err));
+  .catch((err) => {
+    console.log("❌ DB connection error:", err);
+  });
 
-// 404
+// 404 handler
 app.use((req, res) => {
-  res.status(404).json({ message: `path ${req.url} is invalid` });
+  res.status(404).json({ message: `Path ${req.url} not found` });
 });
 
-// error handler
+// Error handler
 app.use((err, req, res, next) => {
   res.status(500).json({
-    message: "error occurred",
+    message: "Server error",
     error: err.message,
   });
 });
