@@ -16,7 +16,7 @@ const app = exp()
 app.use(cors({
   origin: [
     "http://localhost:5173",
-    "https://your-real-frontend.vercel.app"
+    "https://capstone-project-5hbbjpkiq-sreeman07s-projects.vercel.app"
   ],
   credentials: true
 }));
