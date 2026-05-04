@@ -49,10 +49,17 @@ commonApp.post("/login", async (req, res) => {
 
     const user = await userModel.findOne({ email });
 
+    // ✅ check user exists
     if (!user) {
       return res.status(401).json({ message: "invalid email" });
     }
 
+    // ✅ check password field exists
+    if (!user.password) {
+      return res.status(500).json({ message: "User password missing in DB" });
+    }
+
+    // ✅ safe compare
     const isMatched = await bcrypt.compare(password, user.password);
 
     if (!isMatched) {
@@ -67,20 +74,24 @@ commonApp.post("/login", async (req, res) => {
 
     res.cookie("token", signedToken, {
       httpOnly: true,
-      secure: true,       // ✅ FIXED
-      sameSite: "none",   // ✅ FIXED
+      secure: true,
+      sameSite: "none",
     });
 
+    // ✅ send safe data only
     res.status(200).json({
       message: "login success",
-      payload: user,
+      payload: {
+        _id: user._id,
+        email: user.email,
+        role: user.role,
+        firstName: user.firstName,
+      },
     });
 
   } catch (err) {
-    res.status(500).json({
-      message: "error occured",
-      error: err.message,
-    });
+    console.log("LOGIN ERROR:", err);  // 🔥 IMPORTANT
+    res.status(500).json({ message: err.message });
   }
 });
 
