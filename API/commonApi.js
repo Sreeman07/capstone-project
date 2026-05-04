@@ -50,13 +50,13 @@ commonApp.post("/login", async (req, res) => {
     const user = await userModel.findOne({ email });
 
     if (!user) {
-      return res.status(400).json({ message: "invalid email" });
+      return res.status(401).json({ message: "invalid email" });
     }
 
     const isMatched = await bcrypt.compare(password, user.password);
 
     if (!isMatched) {
-      return res.status(401).json({ message: "invalid password" }); // ✅ FIXED
+      return res.status(401).json({ message: "invalid password" });
     }
 
     const signedToken = sign(
@@ -67,14 +67,15 @@ commonApp.post("/login", async (req, res) => {
 
     res.cookie("token", signedToken, {
       httpOnly: true,
-      secure: false,
-      sameSite: "lax",
+      secure: true,       // ✅ FIXED
+      sameSite: "none",   // ✅ FIXED
     });
 
     res.status(200).json({
       message: "login success",
       payload: user,
     });
+
   } catch (err) {
     res.status(500).json({
       message: "error occured",
