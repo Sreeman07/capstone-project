@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import axios from "axios";
 
-const BASE_URL = "http://capstone-project.onrender.com"; 
+const BASE_URL = "https://capstone-project.onrender.com"; 
 
 export const useAuth = create((set) => ({
   currentUser: null,
