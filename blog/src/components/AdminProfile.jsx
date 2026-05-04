@@ -9,7 +9,7 @@ function AdminProfile() {
   const getUsers = async () => {
     try {
       const res = await axios.get(
-        "http://capstone-project.onrender.com/admin-api/users",
+        "https://capstone-project-je9l.onrender.com/admin-api/users",
         { withCredentials: true }
       );
       setUsers(res.data.payload);
@@ -22,7 +22,7 @@ function AdminProfile() {
   const getAuthors = async () => {
     try {
       const res = await axios.get(
-        "http://capstone-project.onrender.com/admin-api/authors",
+        "https://capstone-project-je9l.onrender.com/admin-api/authors",
         { withCredentials: true }
       );
       setAuthors(res.data.payload);

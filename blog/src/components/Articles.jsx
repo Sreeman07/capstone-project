@@ -9,7 +9,7 @@ function Articles() {
   const getArticles = async () => {
     try {
       const res = await axios.get(
-        "http://capstone-project.onrender.com/user-api/articles",
+        "https://capstone-project-je9l.onrender.com/user-api/articles",
         { withCredentials: true }
       );
       setArticles(res.data.payload);
@@ -22,7 +22,7 @@ function Articles() {
   const addComment = async (articleId) => {
     try {
       await axios.put(
-        "http://capstone-project.onrender.com/user-api/articles/comment",
+        "https://capstone-project-je9l.onrender.com/user-api/articles/comment",
         { articleId, comment },
         { withCredentials: true }
       );

@@ -29,7 +29,7 @@ function UserProfile() {
         setLoading(true);
 
         const res = await axios.get(
-          "http://capstone-project.onrender.com/user-api/articles", // ✅ FIXED
+          "https://capstone-project-je9l.onrender.com/user-api/articles", // ✅ FIXED
           { withCredentials: true }
         );
 

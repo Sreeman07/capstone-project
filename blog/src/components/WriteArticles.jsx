@@ -37,7 +37,7 @@ function WriteArticles() {
       articleObj.author = currentUser._id;
 
       const res = await axios.post(
-        "http://capstone-project.onrender.com/author-api/article", // ✅ FIXED
+        "https://capstone-project-je9l.onrender.com/author-api/article", // ✅ FIXED
         articleObj,
         { withCredentials: true }
       );

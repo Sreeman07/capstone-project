@@ -44,7 +44,7 @@ function Register() {
       };
 
       const res = await axios.post(
-        "https://capstone-project.onrender.com/auth-api/users", 
+        "https://capstone-project-je9l.onrender.com/auth-api/users", 
         newUser,
         { withCredentials: true }
       );

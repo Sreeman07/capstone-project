@@ -33,7 +33,7 @@ function AuthorArticles() {
 
         // ✅ FIXED URL
         const res = await axios.get(
-          "http://capstone-project.onrender.com/author-api/article",
+          "https://capstone-project-je9l.onrender.com/author-api/article",
           { withCredentials: true }
         );
 
